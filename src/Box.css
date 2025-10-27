@@ -1,0 +1,110 @@
+.wrapper{
+  display: flex;
+  justify-content: center; /* centers the carousel horizontally */
+  align-items: center;  /* vertically centered */
+  height: 100vh;
+  overflow: hidden;  /* hides overflow outside the wrapper */
+   perspective: 1000px; /*created 3D Depth/ controls how "deep" the 3D effect looks/ smaller values -> stronger perspective (more dramatic), larger -> subtle  */
+}
+
+.boxes {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  overflow-x: hidden;  /* enables horizontal scrolling */
+  scroll-behavior: auto; /* smooth scrolling effect */
+  transform-style:preserve-3d; /* needed for children to render in 3D space */
+}
+
+.box {
+  background-color: red;
+  color: white;
+  width: 150px;
+  flex: 0 0 auto;
+  margin: 0 10px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0; /* prevents boxes from shrinking */
+  transform: rotateY(var(--rotateY, 0deg)) translateZ(var(--translateZ, 0px)); /*rotateY rorates the vox arond the vertical axis./ translateZ moves the box closer/farther from the viewer*/
+  transition: transform 0.2s; 
+}
+
+
+/* 📱 Mobile responsiveness */
+@media (max-width: 600px) {
+  .wrapper{
+    display: flex;
+    
+  }
+
+  .box {
+    background-color:red;
+    color: white;
+    height: 200px;       /* vertical size */
+    width: 250px;        /* horizontal size */
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    
+  }
+
+  .boxes {
+    display: flex;
+    flex-direction: column; /* stack boxes vertically */
+    gap: 10px;
+    overflow-y: hidden;     /* hide the vertical scrollbar */
+    overflow-x: hidden;
+    scroll-behavior:auto;  /* disable smooth scrolling to avoid jump */
+    height: 100%;           /* allow vertical scroll within wrapper */
+    width: 250px;           /* fixed width or responsive width */
+  }
+}
+
+
+ /* .carousel-wrapper {
+  width: 80vw;       
+  height: 50vw;      
+  margin: 100px auto;
+  perspective: 800px;  
+  position: relative;
+}  */
+
+/* .image-carousel {
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+
+/* .box, .box1, .box3 {
+  width: 200px;
+  height: 200px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: transform 0.1s ease, background-color 0.3s ease;
+} */
+
+/* .box { background: #60a5fa; } */
+/* .box1 { background: #52dc1c; }
+.box3 { background: #db0b0b; }
+
+/* Optional hover effects */
+/* .box:hover { transform: translateY(20px); background-color: black; }
+.box1:hover { transform: scale(1.2); background-color: blue; }
+.box3:hover { transform: scale(1.2) rotate(15deg); } */ 
