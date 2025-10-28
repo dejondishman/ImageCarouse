@@ -13,11 +13,17 @@ const boxes = [
 "Rotate me 4",
 "Rotate me 5",
 "Rotate me 6",
+"Rotate me 7",
+"Rotate me 8",
+"Rotate me 9",
+"Rotate me ",
+"Rotate me 5",
+"Rotate me 6",
 ];
 
 useEffect(() => {
     const carousel = carouselRef.current;
-    let angle = 0;
+    let angle = 0; // the # that changes every interval to make the caousel spin continously
     const numBoxes = boxes.length;
   
     const boxElements = carousel.querySelectorAll(".box");
@@ -25,27 +31,29 @@ useEffect(() => {
     // Determine axis based on screen width
     const isMobile = window.innerWidth <= 600;
     const rotationPerBox = 360 / numBoxes;
-  
+    const translateZ = isMobile ? 80 : 300;
+
+    //position boxes in 3D
     boxElements.forEach((box, i) => {
       if (isMobile) {
         // Vertical carousel: rotateX
         const rotateX = i * rotationPerBox;
-        box.style.transform = `rotateX(${rotateX}deg) translateZ(150px)`;
+        box.style.transform = `rotateX(${rotateX}deg) translateZ(300px)`;
       } else {
         // Horizontal carousel: rotateY
         const rotateY = i * rotationPerBox;
-        box.style.transform = `rotateY(${rotateY}deg) translateZ(300px)`;
+        box.style.transform = `rotateY(${rotateY}deg) translateZ(400px)`;
       }
     });
   
     const interval = setInterval(() => {
-      angle += 1; // speed
+      angle += 0.5; // rotate by 1 degree
       if (isMobile) {
         carousel.style.transform = `rotateX(${angle}deg)`;
       } else {
         carousel.style.transform = `rotateY(${angle}deg)`;
       }
-    }, 30);
+    }, 16);
   
     return () => clearInterval(interval);
   }, []);

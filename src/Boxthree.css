@@ -1,67 +1,78 @@
+/* Wrapper: centers carousel and provides 3D perspective */
 .wrapper {
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh;
-perspective: 1000px; /* gives depth */
-background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  perspective: 90vw; /*  depth for 3D */
+  overflow: hidden;
+  background: white;
 }
 
+/* Carousel container: preserves 3D transforms, rotates around center */
 .carousel {
-position: relative;
-width: 200px;
-height: 200px;
-transform-style: preserve-3d;
-transition: transform 1s;
+  position: relative;
+  width: 100px;
+  height: 200px;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transition: transform 0.5s;
 }
 
+/* Individual boxes */
 .box {
-position: absolute;
-width: 150px;
-height: 100px;
-background-color: crimson;
-color: white;
-display: flex;
-justify-content: center;
-align-items: center;
-border-radius: 10px;
-font-size: 1.1rem;
-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-  /* hides the back of boxes when rotated */
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  background-color: crimson;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+
 }
 
+/* 📱 Mobile responsiveness */
 
-@media (max-width: 600px) {
+
+  @media (max-width: 600px) {
     .wrapper {
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        perspective: 1000px; /* gives depth */
-        background: black;
-        }
-    
-        .carousel {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            transform-style: preserve-3d;
-            transition: transform 1s;
-        }  
-
-        .box {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            width: 150px;
-            height: 100px;
-            background-color: blue ;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-              /* hides the back of boxes when rotated */
-            }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* fill the screen for balance */
+      width: 100%;
+      perspective: 800px; /* deeper 3D effect */
+      overflow: hidden;
+      background: black; /* better depth contrast */
+    }
+  
+    .carousel {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      transform-style: preserve-3d;
+      transform-origin: center center;
+      transition: transform 0.5s ease-out;
+    }
+  
+    .box {
+      position: absolute;
+      width: 120px;
+      height: 140px;
+      background-color: rgb(143, 43, 210);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      font-size: 1rem;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
 }
